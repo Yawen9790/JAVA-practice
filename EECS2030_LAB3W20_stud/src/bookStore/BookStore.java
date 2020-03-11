@@ -13,184 +13,146 @@ package bookStore;
  */
 
 import java.util.*;
-
 public class BookStore {
+	
+		/*
+		 * YOU NEED A FIELD HERE TO HOLD THE Book OF THIS BookStore
+		 */
 
-	/*
-	 * YOU NEED A FIELD HERE TO HOLD THE Book OF THIS BookStore
-	 */
+		private TreeMap<Book, Integer> books;
+		private BookStoreOwner owner;
 
-	private TreeMap<Book, Integer> books;
-	private BookStoreOwner owner;
+		/**
+		 * Initializes this book store so that it has the specified owner and no
+		 * books.
+		 * 
+		 * @param owner the owner of this book store
+		 */
+		public BookStore(BookStoreOwner owner) {
+			// COMPLETE THIS
 
-	private Book book;
-
-	/**
-	 * Initializes this book store so that it has the specified owner and no books.
-	 * 
-	 * @param owner the owner of this book store
-	 */
-	public BookStore(BookStoreOwner owner) {
-		// COMPLETE THIS
-		this.owner = owner;
-
-		this.books = new TreeMap<>();
-		book = new Book();
-
-	}
-
-	/**
-	 * Initializes this book store by copying another book store. This book store
-	 * will have the same owner and the same number and type of books as the other
-	 * book store.
-	 * 
-	 * @param other the book store to copy
-	 */
-	public BookStore(BookStore other) {
-		// COMPLETE THIS
-		this.owner = other.getOwner();
-		this.books = other.getBooks();
-		this.book = other.getBook();
-
-	}
-
-	private Book getBook() {
-		// TODO Auto-generated method stub
-		return this.book;
-	}
-
-	private TreeMap<Book, Integer> getBooks() {
-		// TODO Auto-generated method stub
-		return this.books;
-	}
-
-	/**
-	 * Returns the owner of this book store.
-	 * 
-	 * <p>
-	 * This method is present only for testing purposes. Returning the owner of this
-	 * book store allows any user to sell books from the book store (because any
-	 * user can become the owner of this book store)!
-	 * 
-	 * @return the owner of this book store
-	 */
-	public BookStoreOwner getOwner() {
-		// ALREADY IMPLEMENTED; DO NOT MODIFY
-		return this.owner;
-	}
-
-	/**
-	 * Allows the current owner of this book store to give this book store to a new
-	 * owner.
-	 * 
-	 * @param currentOwner the current owner of this book store
-	 * @param newOwner     the new owner of this book store
-	 * @throws IllegalArgumentException if currentOwner reference is not the
-	 *                                  reference of the current owner of this book
-	 *                                  store
-	 */
-	public void changeOwner(BookStoreOwner currentOwner, BookStoreOwner newOwner) {
-
-		// COMPLETE THIS
-		if (this.getOwner().equals(currentOwner)) {
-			this.owner = newOwner;
-		} else {
-			throw new IllegalArgumentException("Error");
+			
 		}
 
-	}
+		/**
+		 * Initializes this book store by copying another book store. This book store will
+		 * have the same owner and the same number and type of books as the other
+		 * book store.
+		 * 
+		 * @param other the book store to copy
+		 */
+		public BookStore(BookStore other) {
+			// COMPLETE THIS
 
-	/**
-	 * Adds the specified books to this book store.
-	 * 
-	 * @param books a list of books to add to this book store
-	 */
-	public void add(List<Book> books) {
-		// COMPLETE THIS
-//			for(int i=0;i<books.size();i++) {
-//
-//			}
-
-		books.forEach(i -> {
-			this.books.put(i, i.hashCode());
-		});
-
-	}
-
-	/**
-	 * Returns true if this book store contains the specified book, and false
-	 * otherwise.
-	 * 
-	 * @param book a book
-	 * @return true if this book store contains the specified book, and false
-	 *         otherwise
-	 */
-	public boolean contains(Book book) {
-
-		// COMPLETE THIS
-		return this.books.containsKey(book);
-
-	}
-
-	/**
-	 * Allows the owner of this book store to sell a single book equal to the
-	 * specified book from this book store.
-	 * 
-	 * <p>
-	 * If the specified user is not equal to the owner of this book store, then the
-	 * book is not sold from this book store, and null is returned.
-	 * 
-	 * @param user the person trying to sell the book
-	 * @param book a book
-	 * @return a book equal to the specified book from this book store, or null if
-	 *         user is not the owner of this book store @pre. the book store
-	 *         contains a book equal to the specified book
-	 */
-	public Book sellingsingleBook(BookStoreOwner user, Book book) {
-
-		// COMPLETE THIS
-		if (this.getOwner().equals(user) && this.books.containsKey(book)) {
-			return book;
+			
 		}
-		return null;
 
-	}
+		/**
+		 * Returns the owner of this book store.
+		 * 
+		 * <p>
+		 * This method is present only for testing purposes. Returning the owner of this
+		 * book store allows any user to sell books from the book store (because any
+		 * user can become the owner of this book store)!
+		 * 
+		 * @return the owner of this book store
+		 */
+		public BookStoreOwner getOwner() {
+			// ALREADY IMPLEMENTED; DO NOT MODIFY
+			return this.owner;
+		}
 
-	/**
-	 * Allows the owner of this book store to sell the smallest number of books
-	 * whose total price value in dollars is equal or less than to the specified
-	 * price value in dollars. Try from the most expensive book and you may want to
-	 * use descendingKeySet() method.
-	 * 
-	 * <p>
-	 * Returns the empty list if the specified user is not equal to the owner of
-	 * this book store.
-	 * </p>
-	 * 
-	 * @param user       the person trying to sell books from this book store
-	 * @param pricevalue a value in dollars
-	 * @return the smallest number of books whose total price value in dollars is
-	 *         equal to the specified value in dollars from this book store @pre.
-	 *         the book store contains a group of books whose total price value is
-	 *         equal to specified value
-	 */
-	public List<Book> sellingBooks(BookStoreOwner user, int pricevalue) {
+		/**
+		 * Allows the current owner of this book store to give this book store to a new
+		 * owner.
+		 * 
+		 * @param currentOwner the current owner of this book store
+		 * @param newOwner     the new owner of this book store
+		 * @throws IllegalArgumentException if currentOwner reference is not the reference of the
+		 * current owner of this book store
+		 */
+		public void changeOwner(BookStoreOwner currentOwner, BookStoreOwner newOwner) {
 
-		// COMPLETE THIS
-		List<Book> temp = new ArrayList<>();
-		int tempp = pricevalue;// ?
+			// COMPLETE THIS
 
-		for (Book i : this.books.descendingKeySet()) {
-			int total = (int) i.getPrice();
-			if (tempp > total) {
-				temp.add(i);// ?
-				tempp -= total;
-			}
+		
+		}
+
+		
+		/**
+		 * Adds the specified books to this book store.
+		 * 
+		 * @param books a list of books to add to this book store
+		 */
+		public void add(List<Book> books) {
+			// COMPLETE THIS
+
+			
 
 		}
 
-		return temp;
+		/**
+		 * Returns true if this book store contains the specified book, and false
+		 * otherwise.
+		 * 
+		 * @param book a book
+		 * @return true if this book store contains the specified book, and false
+		 *         otherwise
+		 */
+		public boolean contains(Book book) {
 
+			// COMPLETE THIS
+
+			
+		}
+
+		/**
+		 * Allows the owner of this book store to sell a single book equal to the
+		 * specified book from this book store.
+		 * 
+		 * <p>
+		 * If the specified user is not equal to the owner of this book store, then the
+		 * book is not sold from this book store, and null is returned.
+		 * 
+		 * @param user    the person trying to sell the book
+		 * @param book     a book
+		 * @return a book equal to the specified book from this book store, or null
+		 *         if user is not the owner of this book store @pre. the book store
+		 *         contains a book equal to the specified book
+		 */
+		public Book sellingsingleBook(BookStoreOwner user, Book book) {
+
+			// COMPLETE THIS
+
+		}
+
+		/**
+		 * Allows the owner of this book store to sell the smallest number of books
+		 * whose total price value in dollars is equal or less than to the specified
+		 * price value in dollars. Try from the most expensive book and you may want 
+		 * to use descendingKeySet() method.
+		 * 
+		 * <p>
+		 * Returns the empty list if the specified user is not equal to the owner of
+		 * this book store.
+		 * </p>
+		 * 
+		 * @param user       the person trying to sell books from this book store
+		 * @param pricevalue a value in dollars
+		 * @return the smallest number of books whose total price value in dollars is
+		 *         equal to the specified value in dollars from this book store @pre. the
+		 *         book store contains a group of books whose total price value is
+		 *         equal to specified value
+		 */
+		public List<Book> sellingBooks(BookStoreOwner user, int pricevalue) {
+
+			// COMPLETE THIS
+
+		
+
+	
+		
 	}
 
-}
+
+
